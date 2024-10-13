@@ -1,8 +1,8 @@
 import socket
 import struct
 import json
-from colorama import Fore, Style
-
+from colorama import Fore, Style, init
+init(autoreset=True)
 def portları_yükle():
     try:
         with open('portlar.json', 'r') as dosya:
@@ -13,7 +13,52 @@ def portları_yükle():
 
 def servis_adı(port, hizmetler):
     return hizmetler.get(str(port), "Bilinmiyor")
+def logo():
+    print(f"""{Fore.GREEN}
 
+                              ..... ..
+                          ..::XXX XXXXX:...
+                        XXXXXXXXXXXXXXXXXXXXX::
+                     XXXXX:XXXXXXX:XXXXXXX:XXXXX::
+                    ..:IXX::XXXXXX:XXXX::.:':XXXX::
+                  ..::::XX:XXXXXX:XXXX:'::':XXXXX::
+                  ...:X'.'XXXXXXXXX.XXXXXXXXXXXX'XXX:
+                 ....:X.:XXXXXXXXXXXXXXXXXXXXXX:'XXXX
+                 ....'X.XXXXXXXXXXXXXXXXX''''' :XXXXXX
+                 ...:::....'''''''''''''       :XXXXXXX
+                 :..::.....                    :'XXXXX
+                  .:::....                     .:XXXXX
+                   ::''''                      .:XXXXX
+                   .      ....,,      ......    :XXXXX
+                    .::'   XXX   ::'   ''':  .XXXX:
+                 :.:   :::'MM'''X    .:'MM '.    'X''.
+                 ::'     I:..:.:X     .'''.'     .::'
+                 ::XI          XI                :::
+                  :XX         XI                .::''
+                  :X' .:.     /X.              .:::
+                  '''....    /XXX.:XX.         ...:
+                   ':....    '::''            ...:
+                    ':...                      ...
+                     :....  :..:II:II:..:     ...
+                     ':....  ::.              ..:::
+                      ':...   '''''''         .::::
+                       .:...               . ..::::
+                   ....:::.:...         .:::::'.XXXX::::....
+          .....:::XXXXXXXX::::::......:::::'   .XXXXXXXIMMM::
+     .::XXXXXXXXXXXXXXXXXX:::::::::::::::'    .XXXXXXXXXMMMMMMM:
+   .XXXXXXXXXXXXXXXXXXXXXX'::::::::::::'   .'.:XXXXXXXX:XXXXXXXXXX
+  .XXXXXXXXXXXXXXXXXXXXXXX '::::::::::'  .' .XXXXXXXXXX:MMMMMMMMMMM
+ .XXXXXXXXXXXXXXXXXXXXXXXX  ':::::::' .'   .XXXXXXXXXXX:MMMMMMMMMMM
+.XXXXXXXXXXXXXXXXXXXXXXXXX   ':::::'.'    .XXXXXXXXXXXX:MMMMMMMMMMM
+XXXXXXXXXXXXXXXXXXXXXXXXXX   .'WWWW.     .XXXXXXXXXXXXXX'MMMMMMMMMM
+XXXXXXXXXXXXXXXXXXXXXXXXX.  .:WWWWWW    .XXXXXXXXXXXXXXX:MMMMMMMMMM
+XXXXXXXXXXXXXXXXXXXXXXXXX.  .:WWWW' '   .XXXXXXXXXXXXXXX:MMMMMMMMMM
+XXXXXXXXXXXXXXXXXXXXXXXXX  : 'WW'    '  XXXXXXXXXXXXXXXXX.MMMMMMMMM
+XXXXXXXXXXXXXXXXXXXXXXXX' :.WWWW'     .XXXXXXXXXXXXXXXXX'MMMMMMMMMM
+XXXXXXXXXXXXXXXXXXXXXXXX...WWWWWW....XXXXXXXXXXXXXXXXXXXXMMMMMMMMMM
+
+
+""")
 def tcp_bağlantı_tarama(hedef, portlar, hizmetler):
     print(Fore.BLUE + "TCP Bağlantı Tarama başlatılıyor..." + Style.RESET_ALL)
     print(Fore.BLUE + "{:<10} {:<10} {}".format("Port", "Durum", "Servis") + Style.RESET_ALL)
@@ -209,4 +254,5 @@ def ana():
             print(Fore.RED + "Geçersiz seçenek: " + tarama.strip() + Style.RESET_ALL)
 
 if __name__ == "__main__":
+    logo()
     ana()
